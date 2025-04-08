@@ -7,7 +7,7 @@ namespace Chess_Challenge.src.Bots
     //Greedy Best First Search
     public class GreedyFirst_BOT : IChessBot
     {
-        private readonly int[] pieceValues = { 0, 100, 320, 330, 500, 900, 10000 };
+        private readonly int[] pieceValues = { 0, 100, 300, 300, 500, 900, 10000 };
         private readonly ulong centerMask = 0x3C3C000000;
         private readonly int[] centerControlBonus = { 0, 5, 10, 10, 7, 5, 0 }; // Index by PieceType
         private bool isWhite;
@@ -86,25 +86,6 @@ namespace Chess_Challenge.src.Bots
                 }
             }
 
-            //// Prioritize unmoved minor pieces (knights/bishops/rooks/queen)
-            //if (movingPiece.PieceType != PieceType.Pawn && movingPiece.PieceType != PieceType.King)
-            //{
-            //    bool pieceMovedBefore = false;
-            //    foreach (var pastMove in board.GameMoveHistory)
-            //    {
-            //        if (pastMove.StartSquare == move.StartSquare)
-            //        {
-            //            pieceMovedBefore = true;
-            //            break;
-            //        }
-            //    }
-            //    if (!pieceMovedBefore)
-            //    {
-            //        score += 25; // Strong incentive to move fresh pieces
-            //    }
-            //}
-
-            // Move prioritization order: pawns -> knights -> bishops -> castle
             bool movedKnight = false, movedBishop = false;
             if (!movedKnight || !movedBishop)
             {
